@@ -1,0 +1,109 @@
+/*iss type ka project bnane ke liye universal selector mei margin padding 0px kr lena look behtar milta hai*/
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+#wrapper{
+    height: 100vh;/*wrapper ki height viewport wali hogi qk sara code wrapper ke under hai*/
+    overflow-x: hidden; /*image ko scroll hone se rokne ke liye right mei isiliye x dir. mei hidden kr diye */
+    overflow-y: auto;/*qk image ko niche scroll krna hee hai*/
+    /*3d wali kaam krni hai mtlb ek image ko dusre image se door krni hai so perspective define kr denge*/
+     
+    perspective: 10px;/*koi bhi value de skte(ex-40px) hai koi effect nhi padega and perspective on hone ka mtlb z0 ka jo plane uss z0 ka plane mei and eye ka jo distance hai wo perspective hota hai*/
+}   
+
+.container{
+    height:100%;
+    position:relative; /*qk hmare child jo hai future mei jaa kr uski position absolute hogi overlap ke liye isiliye relative rakhi*/
+    display: flex;
+    justify-content: center; /*content ko beech mei lane ke liye dono justify and align content use krege*/
+    align-items: center;
+    transform-style: preserve-3d; /*mtlb hum perspective ko preserve rakhna chahte hai agar nhi krege to 2d game chalegi wo same image pplane par chipak jayegi and hum parallax effect nhi laa payege.*/
+    z-index:-1; /*kon si layer(ya image(multiple image bhi ho skti hai ) kiske uppar aani wali hai uske liye use kiya jata hai*/
+}
+
+/*Now image ki overlap krwayege*/
+
+.background,.foreground4{
+    position:absolute;
+    height:100%;
+    width:100%;  
+    z-index: -1;
+    /* object-fit: cover;/*iska use->The CSS object-fit property is used to specify how an <img> or <video> should be resized to fit its container.*/
+}
+
+.background{
+    transform: translateZ(-40px) scale(5); /* translate ka use yha par image ko door krne ke liye kiya jata hai jiski wajah se mountain wali image choti ho gyi hai abb usko bada krna hai scale ki help se*/
+
+}
+.foreground4{
+    transform:translateZ(-20px) scale(3) ;/*uncle wali image choti ho gyi hai abb usko bada krna hai scale ki help se */
+}
+
+h1{
+   position: absolute;
+   top: 5rem;
+   left:50%;
+   transform:translateX(-50%);
+   font-size:10rem;
+   color: white;
+   text-shadow: 0 0 10px rgba(0,0,0,0.3); 
+   letter-spacing: 4px;
+
+}
+
+section{
+    background-color: rgb(45,45,45);
+    color: white;
+    padding:5rem 0 ;
+}
+.secHeading{
+   font-size: 5rem;
+   padding:0 10rem; 
+}
+.text{
+    font-size:1.5rem;
+    padding: 0 10rem;
+}
+
+.bg{
+    position: relative; 
+    width: 100%;
+    background-attachment:fixed;
+    /*image fixed krne ke liye baaki cheezein scroll hogi image ke uppar se*/
+    height: 500px;
+    background-size: cover;/*image fit and center krne ke liye*/
+    background-position: center;
+ }
+ .desc{
+    position:absolute;/*text ko overlapping krne ke liye*/
+    background-color: white;
+    padding:0.5rem 2.5rem; 
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateX(-50%);
+    color: black;
+    font-size:3.5rem ;
+    font-weight: 600;
+
+ }
+
+/*why not image use in html -->Ans-:If the image is only used for design.
+-If the image isn’t a part of the content.
+-If you expect that people can print your page, and don’t want the image to be included by default.
+-If you want to improve the download time (as with CSS sprites).
+-If you need to make visible only a part of the image.
+-If you want to make an image-replacement of a text.
+-If you need to stretch the background image to fill its whole window. Use with the background-size set to “cover”.
+-If there is a need to repeat images.
+ */
+.bg1{
+    background-image:url(sport1.jpeg) ;
+}
+.bg2{
+    background-image: url(sport2.jpeg);
+}
+.bg3{
+    background-image: url(sport3.jpeg);
+}
